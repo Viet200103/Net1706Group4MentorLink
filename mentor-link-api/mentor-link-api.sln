@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MentorLink.Business", "MentorLink.Business\MentorLink.Business.csproj", "{F8CD926F-B806-47D5-A86D-9A7A1103AD9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MentorLink.Data", "MentorLink.Data\MentorLink.Data.csproj", "{F7EA37A6-8818-44D7-8DDA-D267DC3DC559}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MentorLink.API", "MentorLink.API\MentorLink.API.csproj", "{7A861E25-92EB-4FBA-97E5-986BE2EE366C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8CD926F-B806-47D5-A86D-9A7A1103AD9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8CD926F-B806-47D5-A86D-9A7A1103AD9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8CD926F-B806-47D5-A86D-9A7A1103AD9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8CD926F-B806-47D5-A86D-9A7A1103AD9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7EA37A6-8818-44D7-8DDA-D267DC3DC559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7EA37A6-8818-44D7-8DDA-D267DC3DC559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7EA37A6-8818-44D7-8DDA-D267DC3DC559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7EA37A6-8818-44D7-8DDA-D267DC3DC559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A861E25-92EB-4FBA-97E5-986BE2EE366C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A861E25-92EB-4FBA-97E5-986BE2EE366C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A861E25-92EB-4FBA-97E5-986BE2EE366C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A861E25-92EB-4FBA-97E5-986BE2EE366C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
