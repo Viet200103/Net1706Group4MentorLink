@@ -18,4 +18,9 @@ public class NewsCategoryRepository : INewsCategoryRepository
         return await _dbContext.NewsCategories.FirstOrDefaultAsync(c => c.CategoryId == newsDtoCategoryId) ?? throw new
             InvalidOperationException();
     }
+
+    public async Task<IEnumerable<NewsCategory>> GetAllNewsCategoryAsync()
+    {
+        return await _dbContext.NewsCategories.ToListAsync();
+    }
 }
