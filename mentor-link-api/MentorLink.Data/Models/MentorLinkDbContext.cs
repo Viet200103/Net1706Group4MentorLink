@@ -2,15 +2,23 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 
 namespace MentorLink.Data.Models;
 
 public partial class MentorLinkDbContext : DbContext
 {
-    public MentorLinkDbContext(DbContextOptions<MentorLinkDbContext> options) : base(options) { }
+    private readonly IConfiguration _configuration;
+
+    public MentorLinkDbContext(DbContextOptions<MentorLinkDbContext> options, IConfiguration configuration) :
+        base(options)
+    {
+        _configuration = configuration;
+    }
 
     public DbSet<News> News { get; set; }
+    public DbSet<NewsCategory> NewsCategories { get; set; }
     public DbSet<CapstoneWorkspace> CapstoneWorkspaces { get; set; }
     public DbSet<TaskBoard> TaskBoards { get; set; }
     public DbSet<TaskList> TaskLists { get; set; }
@@ -19,8 +27,8 @@ public partial class MentorLinkDbContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseMySql("server=localhost;port=3306;database=MentorLink;user=root;password=123456;",
-                new MySqlServerVersion(new Version(8, 0, 37))); // Ensure your MySQL version is correct
+            optionsBuilder.UseMySql(_configuration.GetConnectionString("DefaultConnection"),
+                ServerVersion.AutoDetect(_configuration.GetConnectionString("DefaultConnection")));
         }
     }
 }

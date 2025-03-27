@@ -7,25 +7,19 @@ namespace MentorLink.Data.Models;
 
 public partial class News
 {
-    [Key]
-    public int NewsId { get; set; }
+    [Key] public int NewsId { get; set; }
 
-    [Required]
-    [MaxLength(255)]
-    public string Title { get; set; }
+    [Required] [MaxLength(255)] public string Title { get; set; }
 
-    [Column(TypeName = "json")]
-    public string Content { get; set; } // Store JSON as string
+    [Column(TypeName = "json")] public string Content { get; set; }
 
-    [Required]
-    public int Author { get; set; }
+    [Required] public int Author { get; set; }
 
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public DateTime PublicDate { get; set; } = DateTime.UtcNow;
+    public DateTime PublicDate { get; set; } = DateTime.Now;
 
-    [MaxLength(100)]
-    public string Category { get; set; }
+    [ForeignKey("NewsCategory")] public int CategoryId { get; set; }
 
-    public int Status { get; set; } = 0;
-    public int UpdateStatus { get; set; } = 0;
+    [Required] public int Status { get; set; } = 0;
+
+    public virtual NewsCategory NewsCategory { get; set; }
 }

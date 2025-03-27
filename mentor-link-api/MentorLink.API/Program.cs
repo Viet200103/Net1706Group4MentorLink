@@ -9,8 +9,9 @@ builder.Services.AddControllers();
 
 //Add DB Context
 builder.Services.AddDbContext<MentorLinkDbContext>(options =>
-    options.UseMySql("server=localhost;port=3306;database=MentorLink;user=root;password=123456;",
-        new MySqlServerVersion(new Version(8, 0, 37))));
+    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -30,4 +31,16 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+ApplyMigration();
+
 app.Run();
+
+void ApplyMigration()
+{
+    using var scope = app.Services.CreateScope();
+    var _db = scope.ServiceProvider.GetRequiredService<MentorLinkDbContext>();
+    if (_db.Database.GetPendingMigrations().Any())
+    {
+        _db.Database.Migrate();
+    }
+}

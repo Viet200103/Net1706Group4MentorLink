@@ -6,19 +6,17 @@ namespace MentorLink.Data.Models;
 
 public partial class CapstoneWorkspace
 {
-    [Key]
-    public int CapstoneWorkspaceId { get; set; }
+    [Key] public int CapstoneWorkspaceId { get; set; }
 
-    [Required]
-    [MaxLength(255)]
-    public string Name { get; set; }
+    [Required] [MaxLength(255)] public string Name { get; set; }
 
-    [MaxLength(50)]
-    public string Status { get; set; }
+    [Required] public int Status { get; set; } = 0;
 
     public DateTime? StartDate { get; set; }
+
     public DateTime? EndDate { get; set; }
 
-    [MaxLength(100)]
-    public string WorkspaceCode { get; set; }
+    [MaxLength(100)] [Required] public string WorkspaceCode { get; set; }
+    
+    public virtual ICollection<TaskBoard>  TaskBoards { get; set; }
 }

@@ -14,4 +14,8 @@
       <ProjectReference Include="..\MentorLink.Business\MentorLink.Business.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Controllers\" />
+    </ItemGroup>
+
 </Project>
