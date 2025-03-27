@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MentorLink.Data.Models;
 
+[Table("CapstoneWorkspace")]
 public partial class CapstoneWorkspace
 {
     [Key] public int CapstoneWorkspaceId { get; set; }

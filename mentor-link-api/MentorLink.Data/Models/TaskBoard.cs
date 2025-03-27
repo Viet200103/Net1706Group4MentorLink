@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MentorLink.Data.Models;
 
+[Table("TaskBoard")]
 public partial class TaskBoard
 {
     [Key] public int TaskBoardId { get; set; }

@@ -10,7 +10,7 @@ namespace MentorLink.Data.Models;
 public partial class MentorLinkDbContext : DbContext
 {
     private readonly IConfiguration _configuration;
-
+    
     public MentorLinkDbContext(DbContextOptions<MentorLinkDbContext> options, IConfiguration configuration) :
         base(options)
     {

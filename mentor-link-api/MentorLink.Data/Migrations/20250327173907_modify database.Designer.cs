@@ -4,6 +4,7 @@ using MentorLink.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MentorLink.Data.Migrations
 {
     [DbContext(typeof(MentorLinkDbContext))]
-    partial class MentorLinkContextModelSnapshot : ModelSnapshot
+    [Migration("20250327173907_modify database")]
+    partial class modifydatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,7 +54,7 @@ namespace MentorLink.Data.Migrations
 
                     b.HasKey("CapstoneWorkspaceId");
 
-                    b.ToTable("CapstoneWorkspace");
+                    b.ToTable("CapstoneWorkspaces");
                 });
 
             modelBuilder.Entity("MentorLink.Data.Models.News", b =>
@@ -105,7 +108,7 @@ namespace MentorLink.Data.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("NewsCategory");
+                    b.ToTable("NewsCategories");
                 });
 
             modelBuilder.Entity("MentorLink.Data.Models.TaskBoard", b =>
@@ -135,7 +138,7 @@ namespace MentorLink.Data.Migrations
 
                     b.HasIndex("CapstoneWorkspaceId");
 
-                    b.ToTable("TaskBoard");
+                    b.ToTable("TaskBoards");
                 });
 
             modelBuilder.Entity("MentorLink.Data.Models.TaskList", b =>
@@ -161,7 +164,7 @@ namespace MentorLink.Data.Migrations
 
                     b.HasIndex("TaskBoardId");
 
-                    b.ToTable("TaskList");
+                    b.ToTable("TaskLists");
                 });
 
             modelBuilder.Entity("MentorLink.Data.Models.News", b =>

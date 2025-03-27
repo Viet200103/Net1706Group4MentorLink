@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MentorLink.Data.Models;
 
+[Table("TaskList")]
 public partial class TaskList
 {
     [Key] public int TaskListId { get; set; }
