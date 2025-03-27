@@ -1,3 +1,4 @@
+using AutoMapper;
 using MentorLink.Business.Mapper;
 using MentorLink.Business.Repositories;
 using MentorLink.Business.Services;
@@ -20,10 +21,10 @@ builder.Services.AddDbContext<MentorLinkDbContext>(options =>
 //Add Mapper
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 
-// Register Repositories Injections
+//Register Dependency Injection
+builder.Services.AddScoped<INewsRepository, NewsRepository>();
+builder.Services.AddScoped<INewsService, NewsService>();
 builder.Services.AddScoped<ITaskListRepository, TaskListRepository>();
-
-// Register Services Injections
 builder.Services.AddScoped<ITaskListService, TaskListService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

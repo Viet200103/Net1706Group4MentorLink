@@ -1,19 +1,16 @@
 ﻿using AutoMapper;
 using MentorLink.Business.Dtos;
 using MentorLink.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MentorLink.Data.Models.Dtos;
 
-namespace MentorLink.Business.Mapper
+namespace MentorLink.Business.Mapper;
+
+public class MapperConfig : Profile
 {
-    public class MapperConfig : Profile
+    public MapperConfig()
     {
-        public MapperConfig()
-        {
-            CreateMap<TaskList, TaskListDto>().ReverseMap();
-        }
+        CreateMap<News, NewsDto>().ReverseMap();
+        CreateMap<NewsCategory, NewsCategoryDto>().ReverseMap();
+        CreateMap<TaskList, TaskListDto>().ReverseMap();
     }
 }

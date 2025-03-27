@@ -16,6 +16,8 @@ public partial class News
 
     [Required] public int Author { get; set; }
 
+    [Column(TypeName = "timestamp")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public DateTime PublicDate { get; set; } = DateTime.Now;
 
     [ForeignKey("NewsCategory")] public int CategoryId { get; set; }
