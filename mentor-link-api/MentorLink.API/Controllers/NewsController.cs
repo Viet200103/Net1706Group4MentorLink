@@ -19,7 +19,7 @@ public class NewsController
     }
 
     [HttpGet]
-    public async Task<ResponseDto> Get()
+    public async Task<ResponseDto> GetAsync()
     {
         try
         {
@@ -32,6 +32,23 @@ public class NewsController
             _response.Message = ex.Message;
         }
 
+        return _response;
+    }
+    
+    [HttpGet]
+    [Route("{id:int}")]
+    public async Task<ResponseDto> GetAsync(int id)
+    {
+        try
+        {
+            NewsDto newsDto = await _service.GetNewsById(id);
+            _response.Result = newsDto;
+        }
+        catch (Exception ex)
+        {
+            _response.IsSuccess = false;
+            _response.Message = ex.Message;
+        }
         return _response;
     }
 }

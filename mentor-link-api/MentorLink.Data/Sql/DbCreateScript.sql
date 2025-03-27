@@ -1,70 +1,57 @@
 DROP DATABASE IF EXISTS MentorLink;
+
 CREATE DATABASE MentorLink;
 USE MentorLink;
 
-create table capstoneworkspace
+CREATE TABLE CapstoneWorkspace
 (
-    CapstoneWorkspaceId int auto_increment
-        primary key,
-    Name                varchar(255)  not null,
-    Status              int default 0 not null,
-    StartDate           datetime(6)   null,
-    EndDate             datetime(6)   null,
-    WorkspaceCode       varchar(100)  not null
+    CapstoneWorkspaceId INT AUTO_INCREMENT PRIMARY KEY,
+    Name                VARCHAR(255) NOT NULL,
+    Status              INT          NOT NULL,
+    StartDate           DATETIME(6)  NULL,
+    EndDate             DATETIME(6)  NULL,
+    WorkspaceCode       VARCHAR(100) NOT NULL
 );
 
-create table newscategory
+CREATE TABLE NewsCategory
 (
-    CategoryId int auto_increment
-        primary key,
-    Name       varchar(255) not null
+    CategoryId INT AUTO_INCREMENT PRIMARY KEY,
+    Name       VARCHAR(255) NOT NULL
 );
 
-create table news
+CREATE TABLE News
 (
-    NewsId     int auto_increment
-        primary key,
-    Title      varchar(255)                                     not null,
-    Content    json                                             not null,
-    Author     int                                              not null,
-    PublicDate datetime(6) default '0001-01-01 00:00:00.000000' not null,
-    Status     int         default 0                            not null,
-    CategoryId int         default 0                            not null,
-    constraint FK_News_NewsCategory_CategoryId
-        foreign key (CategoryId) references newscategory (CategoryId)
-            on delete cascade
+    NewsId     INT AUTO_INCREMENT PRIMARY KEY,
+    Title      VARCHAR(255)                        NOT NULL,
+    Content    JSON                                NOT NULL,
+    Author     INT                                 NOT NULL,
+    PublicDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+    CategoryId INT                                 NOT NULL,
+    Status     INT                                 NOT NULL,
+    CONSTRAINT FK_News_NewsCategory FOREIGN KEY (CategoryId) REFERENCES NewsCategory (CategoryId) ON DELETE CASCADE
 );
 
-create index IX_News_CategoryId
-    on news (CategoryId);
+CREATE INDEX IX_News_CategoryId ON News (CategoryId);
 
-create table taskboard
+CREATE TABLE TaskBoard
 (
-    TaskBoardId         int auto_increment
-        primary key,
-    Title               varchar(255)  not null,
-    Description         text          not null,
-    Status              int default 0 not null,
-    CapstoneWorkspaceId int default 0 not null,
-    constraint FK_TaskBoard_CapstoneWorkspace_CapstoneWorkspaceId
-        foreign key (CapstoneWorkspaceId) references capstoneworkspace (CapstoneWorkspaceId)
-            on delete cascade
+    TaskBoardId         INT AUTO_INCREMENT PRIMARY KEY,
+    Title               VARCHAR(255) NOT NULL,
+    Description         TEXT         NOT NULL,
+    Status              INT          NOT NULL,
+    CapstoneWorkspaceId INT          NOT NULL,
+    CONSTRAINT FK_TaskBoard_CapstoneWorkspace FOREIGN KEY (CapstoneWorkspaceId) REFERENCES CapstoneWorkspace (CapstoneWorkspaceId) ON DELETE CASCADE
 );
 
-create index IX_TaskBoard_CapstoneWorkspaceId
-    on taskboard (CapstoneWorkspaceId);
+CREATE INDEX IX_TaskBoard_CapstoneWorkspaceId ON TaskBoard (CapstoneWorkspaceId);
 
-create table tasklist
+CREATE TABLE TaskList
 (
-    TaskListId  int auto_increment
-        primary key,
-    ListName    varchar(255)  not null,
-    Position    int default 0 not null,
-    TaskBoardId int           not null,
-    constraint FK_TaskList_TaskBoard_TaskBoardId
-        foreign key (TaskBoardId) references taskboard (TaskBoardId)
-            on delete cascade
+    TaskListId  INT AUTO_INCREMENT PRIMARY KEY,
+    ListName    VARCHAR(255) NOT NULL,
+    Position    INT          NOT NULL,
+    TaskBoardId INT          NOT NULL,
+    CONSTRAINT FK_TaskList_TaskBoard FOREIGN KEY (TaskBoardId) REFERENCES TaskBoard (TaskBoardId) ON DELETE CASCADE
 );
 
-create index IX_TaskList_TaskBoardId
-    on tasklist (TaskBoardId);
+CREATE INDEX IX_TaskList_TaskBoardId ON TaskList (TaskBoardId);

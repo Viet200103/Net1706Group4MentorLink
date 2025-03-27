@@ -22,4 +22,10 @@ public class NewsService : INewsService
         IEnumerable<News> newsList = await _repository.GetAllNewsAsync();
         return _mapper.Map<IEnumerable<NewsDto>>(newsList);
     }
+
+    public async Task<NewsDto> GetNewsById(int id)
+    {
+        News news= await _repository.GetNewsById(id);
+        return _mapper.Map<NewsDto>(news);
+    }
 }

@@ -17,4 +17,9 @@ public class NewsRepository : INewsRepository
     {
         return await _dbContext.News.Include(n => n.NewsCategory).ToListAsync();
     }
+
+    public async Task<News> GetNewsById(int id)
+    {
+        return await _dbContext.News.Include(n => n.NewsCategory).FirstOrDefaultAsync(n => n.NewsId == id) ?? throw new InvalidOperationException();
+    }
 }

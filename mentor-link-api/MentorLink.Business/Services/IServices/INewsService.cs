@@ -5,4 +5,5 @@ namespace MentorLink.Business.Services.IServices;
 public interface INewsService
 {
     Task<IEnumerable<NewsDto>> GetAllNewsAsync();
+    Task<NewsDto> GetNewsById(int id);
 }
