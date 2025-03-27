@@ -1,0 +1,14 @@
+DROP DATABASE IF EXISTS MentorLink;
+CREATE DATABASE MentorLink;
+USE MentorLink;
+
+CREATE TABLE News (
+    NewsId INT PRIMARY KEY AUTO_INCREMENT,
+    Title VARCHAR(255) NOT NULL,
+    Content JSON,
+    Author INT NOT NULL,
+    PublicDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    Category VARCHAR(100),
+    Status INT DEFAULT 0,
+    UpdateStatus INT DEFAULT 0
+);
