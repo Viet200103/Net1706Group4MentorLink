@@ -19,6 +19,4 @@ public partial class TaskBoard
     [ForeignKey("CapstoneWorkspace")][Required] public int CapstoneWorkspaceId { get; set; }
     
     public virtual CapstoneWorkspace CapstoneWorkspace { get; set; }
-    
-    public virtual ICollection<TaskList>  TaskLists { get; set; }
 }

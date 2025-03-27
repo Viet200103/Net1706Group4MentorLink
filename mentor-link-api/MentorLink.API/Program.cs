@@ -1,3 +1,8 @@
+using MentorLink.Business.Mapper;
+using MentorLink.Business.Repositories;
+using MentorLink.Business.Services;
+using MentorLink.Business.Services.IServices;
+using MentorLink.Data.IRepositories;
 using MentorLink.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +16,15 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<MentorLinkDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
         ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
+
+//Add Mapper
+builder.Services.AddAutoMapper(typeof(MapperConfig));
+
+// Register Repositories Injections
+builder.Services.AddScoped<ITaskListRepository, TaskListRepository>();
+
+// Register Services Injections
+builder.Services.AddScoped<ITaskListService, TaskListService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

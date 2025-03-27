@@ -19,6 +19,4 @@ public partial class CapstoneWorkspace
     public DateTime? EndDate { get; set; }
 
     [MaxLength(100)] [Required] public string WorkspaceCode { get; set; }
-    
-    public virtual ICollection<TaskBoard>  TaskBoards { get; set; }
 }
