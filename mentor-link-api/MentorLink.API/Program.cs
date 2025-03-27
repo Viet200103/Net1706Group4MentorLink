@@ -23,7 +23,9 @@ builder.Services.AddAutoMapper(typeof(MapperConfig));
 
 //Register Dependency Injection
 builder.Services.AddScoped<INewsRepository, NewsRepository>();
+builder.Services.AddScoped<INewsCategoryRepository, NewsCategoryRepository>();
 builder.Services.AddScoped<INewsService, NewsService>();
+builder.Services.AddScoped<INewsCategoryService, NewsCategoryService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

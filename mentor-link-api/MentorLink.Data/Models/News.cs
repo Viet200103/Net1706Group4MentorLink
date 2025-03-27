@@ -8,7 +8,7 @@ namespace MentorLink.Data.Models;
 [Table("News")]
 public partial class News
 {
-    [Key] public int NewsId { get; set; }
+    [Key] public int? NewsId { get; set; }
 
     [Required] [MaxLength(255)] public string Title { get; set; }
 

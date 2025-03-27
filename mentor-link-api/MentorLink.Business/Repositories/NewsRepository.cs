@@ -20,6 +20,21 @@ public class NewsRepository : INewsRepository
 
     public async Task<News> GetNewsById(int id)
     {
-        return await _dbContext.News.Include(n => n.NewsCategory).FirstOrDefaultAsync(n => n.NewsId == id) ?? throw new InvalidOperationException();
+        return await _dbContext.News.Include(n => n.NewsCategory).FirstOrDefaultAsync(n => n.NewsId == id) ??
+               throw new InvalidOperationException();
+    }
+
+    public async Task<News> CreateNewsAsync(News news)
+    {
+        _dbContext.News.Add(news);
+        await _dbContext.SaveChangesAsync();
+        return news;
+    }
+
+    public async Task<bool> DeleteNewsAsync(int id)
+    {
+        _dbContext.News.Remove(_dbContext.News.FirstOrDefault(n => n.NewsId == id) ?? throw new InvalidOperationException());
+        await _dbContext.SaveChangesAsync();
+        return true;
     }
 }
