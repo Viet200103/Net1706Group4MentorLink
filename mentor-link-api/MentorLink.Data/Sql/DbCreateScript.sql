@@ -2,39 +2,69 @@ DROP DATABASE IF EXISTS MentorLink;
 CREATE DATABASE MentorLink;
 USE MentorLink;
 
-CREATE TABLE News (
-    NewsId INT PRIMARY KEY AUTO_INCREMENT,
-    Title VARCHAR(255) NOT NULL,
-    Content JSON,
-    Author INT NOT NULL,
-    PublicDate DATETIME DEFAULT CURRENT_TIMESTAMP,
-    Category VARCHAR(100),
-    Status INT DEFAULT 0,
-    UpdateStatus INT DEFAULT 0
+create table capstoneworkspace
+(
+    CapstoneWorkspaceId int auto_increment
+        primary key,
+    Name                varchar(255)  not null,
+    Status              int default 0 not null,
+    StartDate           datetime(6)   null,
+    EndDate             datetime(6)   null,
+    WorkspaceCode       varchar(100)  not null
 );
 
-CREATE TABLE CapstoneWorkspace (
-    CapstoneWorkspaceId INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(255) NOT NULL,
-    Status VARCHAR(50),
-    StartDate DATETIME,
-    EndDate DATETIME,
-    WorkspaceCode VARCHAR(100) UNIQUE
+create table newscategory
+(
+    CategoryId int auto_increment
+        primary key,
+    Name       varchar(255) not null
 );
 
-CREATE TABLE TaskBoard (
-    TaskBoardId INT PRIMARY KEY AUTO_INCREMENT,
-    Title VARCHAR(255) NOT NULL,
-    Description TEXT,
-    Status VARCHAR(50),
-    CapstoneWorkspaceId INT,
-    FOREIGN KEY (CapstoneWorkspaceId) REFERENCES CapstoneWorkspace(CapstoneWorkspaceId)
+create table news
+(
+    NewsId     int auto_increment
+        primary key,
+    Title      varchar(255)                                     not null,
+    Content    json                                             not null,
+    Author     int                                              not null,
+    PublicDate datetime(6) default '0001-01-01 00:00:00.000000' not null,
+    Status     int         default 0                            not null,
+    CategoryId int         default 0                            not null,
+    constraint FK_News_NewsCategory_CategoryId
+        foreign key (CategoryId) references newscategory (CategoryId)
+            on delete cascade
 );
 
-CREATE TABLE TaskList (
-    TaskListId INT PRIMARY KEY AUTO_INCREMENT,
-    ListName VARCHAR(255) NOT NULL,
-    Position INT,
-    TaskBoardId INT NOT NULL,
-    FOREIGN KEY (TaskBoardId) REFERENCES TaskBoard(TaskBoardId) ON DELETE CASCADE
+create index IX_News_CategoryId
+    on news (CategoryId);
+
+create table taskboard
+(
+    TaskBoardId         int auto_increment
+        primary key,
+    Title               varchar(255)  not null,
+    Description         text          not null,
+    Status              int default 0 not null,
+    CapstoneWorkspaceId int default 0 not null,
+    constraint FK_TaskBoard_CapstoneWorkspace_CapstoneWorkspaceId
+        foreign key (CapstoneWorkspaceId) references capstoneworkspace (CapstoneWorkspaceId)
+            on delete cascade
 );
+
+create index IX_TaskBoard_CapstoneWorkspaceId
+    on taskboard (CapstoneWorkspaceId);
+
+create table tasklist
+(
+    TaskListId  int auto_increment
+        primary key,
+    ListName    varchar(255)  not null,
+    Position    int default 0 not null,
+    TaskBoardId int           not null,
+    constraint FK_TaskList_TaskBoard_TaskBoardId
+        foreign key (TaskBoardId) references taskboard (TaskBoardId)
+            on delete cascade
+);
+
+create index IX_TaskList_TaskBoardId
+    on tasklist (TaskBoardId);

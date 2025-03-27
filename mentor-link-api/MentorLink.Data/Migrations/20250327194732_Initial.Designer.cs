@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MentorLink.Data.Migrations
 {
     [DbContext(typeof(MentorLinkDbContext))]
-    [Migration("20250327174316_modify tables name")]
-    partial class modifytablesname
+    [Migration("20250327194732_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,7 +76,10 @@ namespace MentorLink.Data.Migrations
                         .HasColumnType("json");
 
                     b.Property<DateTime>("PublicDate")
-                        .HasColumnType("datetime(6)");
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlComputedColumn(b.Property<DateTime>("PublicDate"));
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -170,7 +173,7 @@ namespace MentorLink.Data.Migrations
             modelBuilder.Entity("MentorLink.Data.Models.News", b =>
                 {
                     b.HasOne("MentorLink.Data.Models.NewsCategory", "NewsCategory")
-                        .WithMany("News")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -203,11 +206,6 @@ namespace MentorLink.Data.Migrations
             modelBuilder.Entity("MentorLink.Data.Models.CapstoneWorkspace", b =>
                 {
                     b.Navigation("TaskBoards");
-                });
-
-            modelBuilder.Entity("MentorLink.Data.Models.NewsCategory", b =>
-                {
-                    b.Navigation("News");
                 });
 
             modelBuilder.Entity("MentorLink.Data.Models.TaskBoard", b =>

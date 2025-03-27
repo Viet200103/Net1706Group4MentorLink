@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MentorLink.Data.Migrations
 {
     [DbContext(typeof(MentorLinkDbContext))]
-    partial class MentorLinkContextModelSnapshot : ModelSnapshot
+    partial class MentorLinkDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -73,7 +73,10 @@ namespace MentorLink.Data.Migrations
                         .HasColumnType("json");
 
                     b.Property<DateTime>("PublicDate")
-                        .HasColumnType("datetime(6)");
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlComputedColumn(b.Property<DateTime>("PublicDate"));
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -167,7 +170,7 @@ namespace MentorLink.Data.Migrations
             modelBuilder.Entity("MentorLink.Data.Models.News", b =>
                 {
                     b.HasOne("MentorLink.Data.Models.NewsCategory", "NewsCategory")
-                        .WithMany("News")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -200,11 +203,6 @@ namespace MentorLink.Data.Migrations
             modelBuilder.Entity("MentorLink.Data.Models.CapstoneWorkspace", b =>
                 {
                     b.Navigation("TaskBoards");
-                });
-
-            modelBuilder.Entity("MentorLink.Data.Models.NewsCategory", b =>
-                {
-                    b.Navigation("News");
                 });
 
             modelBuilder.Entity("MentorLink.Data.Models.TaskBoard", b =>
