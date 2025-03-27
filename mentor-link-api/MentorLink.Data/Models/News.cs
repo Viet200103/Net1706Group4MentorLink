@@ -8,7 +8,7 @@ namespace MentorLink.Data.Models;
 [Table("News")]
 public partial class News
 {
-    [Key] public int NewsId { get; set; }
+    [Key] public int? NewsId { get; set; }
 
     [Required] [MaxLength(255)] public string Title { get; set; }
 
@@ -16,6 +16,8 @@ public partial class News
 
     [Required] public int Author { get; set; }
 
+    [Column(TypeName = "timestamp")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public DateTime PublicDate { get; set; } = DateTime.Now;
 
     [ForeignKey("NewsCategory")] public int CategoryId { get; set; }
