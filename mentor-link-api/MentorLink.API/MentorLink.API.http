@@ -1,6 +1,12 @@
-@MentorLink.API_HostAddress = http://localhost:5083
+namespace MentorLink.API;
 
-GET {{MentorLink.API_HostAddress}}/weatherforecast/
-Accept: application/json
+public class WeatherForecast
+{
+    public DateOnly Date { get; set; }
 
-###
+    public int TemperatureC { get; set; }
+
+    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+
+    public string? Summary { get; set; }
+}
