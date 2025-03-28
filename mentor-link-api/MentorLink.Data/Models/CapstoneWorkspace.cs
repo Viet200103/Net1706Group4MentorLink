@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -21,4 +21,6 @@ public partial class CapstoneWorkspace
     [MaxLength(100)] [Required] public string WorkspaceCode { get; set; }
     
     public virtual ICollection<TaskBoard>  TaskBoards { get; set; }
+    public List<Student> Students { get; set; } 
+    public List<LecturerWorkspace> LecturerWorkspaces { get; set; } 
 }

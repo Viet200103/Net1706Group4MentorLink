@@ -13,10 +13,14 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.14">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MentorLink.Business\MentorLink.Business.csproj" />
+      <ProjectReference Include="..\MentorLink.Business\MentorLink.Business.csproj" />
     </ItemGroup>
 
 </Project>
