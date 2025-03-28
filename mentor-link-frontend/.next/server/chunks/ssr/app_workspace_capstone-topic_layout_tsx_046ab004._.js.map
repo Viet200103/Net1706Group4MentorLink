@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file://D%3A/c%23Code/swd-final-submit/SwdMentorLink/mentor-link-frontend/app/workspace/capstone-topic/layout.tsx"],"sourcesContent":["\r\nexport default function CapstoneTopicLayout({ children }: { children: React.ReactNode }) {\r\n\r\n    return <div>\r\n        {children}\r\n    </div>\r\n}"],"names":[],"mappings":";;;;;AACe,SAAS,oBAAoB,EAAE,QAAQ,EAAiC;IAEnF,qBAAO,8OAAC;kBACH;;;;;;AAET","debugId":null}}]
+}
