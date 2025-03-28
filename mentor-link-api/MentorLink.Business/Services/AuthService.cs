@@ -10,25 +10,26 @@ using Microsoft.AspNetCore.Identity;
 namespace MentorLink.Business.Services;
 
 public class AuthService(
-    IUserRepository userRepository,
-    ITokenProvider tokenProvider
+    ITokenProvider tokenProvider,
+    IUserRepository userRepository
 ) : IAuthService
 {
     private readonly PasswordHasher<string> _passwordHasher = new();
 
     public async Task<AccessToken> Login(LoginRequestDTO loginRequestDTO)
     {
-        User? systemAccount = await userRepository.GetUserByEmail(loginRequestDTO.Email);
-        if (systemAccount == null)
+        User? user = await userRepository.GetUserByEmail(loginRequestDTO.Email);
+        if (user == null)
         {
             throw new UserNotFoundException();
         }
 
-        var isUser = VerifyPassword(systemAccount, loginRequestDTO.Password);
+        // var isUser = VerifyPassword(systemAccount, loginRequestDTO.Password);
+        var isUser = user.Password == loginRequestDTO.Password;
         if (isUser)
         {
             // hard role code for test
-            string token = tokenProvider.GenerateToken(systemAccount, ["administrator"]);
+            string token = tokenProvider.GenerateToken(user, ["administrator"]);
             return new AccessToken { Token = token };
         }
 

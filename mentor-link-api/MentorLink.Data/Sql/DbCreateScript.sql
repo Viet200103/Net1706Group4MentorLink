@@ -8,7 +8,7 @@ MentorLink;
 
 CREATE TABLE User
 (
-    UserId   VARCHAR(32) PRIMARY KEY,
+    UserId   VARCHAR(128) PRIMARY KEY,
     Email    VARCHAR(255),
     Password VARCHAR(128),
     CreateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
