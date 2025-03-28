@@ -23,6 +23,7 @@ export default function Layout({
         className={`${geistMono.variable} ${geistMono.variable} antialiased `}
       >
         {children}
+
       </body>
     </html>
   );
