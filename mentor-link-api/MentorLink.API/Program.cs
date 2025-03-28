@@ -23,13 +23,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
-builder.Services.AddScoped<ITaskBoardRepository, TaskBoardRepository>();
-builder.Services.AddScoped<ILecturerWorkSpaceRepository, LecturerWorkSpaceRepository>();
-builder.Services.AddScoped<IStudentRepository, StudentRepository>();
-
-builder.Services.AddScoped<ITaskBoardService, TaskBoardService>();
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

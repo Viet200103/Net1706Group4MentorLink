@@ -1,5 +1,7 @@
-﻿namespace MentorLink.Data.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
+namespace MentorLink.Data.Models;
+[Table("Lecturer")]
 public class Lecturer
 {
     public int LecturerId { get; set; }
@@ -8,5 +10,7 @@ public class Lecturer
     public string Campus { get; set; } = string.Empty;
     public string? Experience { get; set; }
     public string? Description { get; set; }
+    public int UserId { get; set; }
+    public User? User { get; set; } = null!;
     public List<LecturerWorkspace> LecturerWorkspaces { get; set; } = new();
 }

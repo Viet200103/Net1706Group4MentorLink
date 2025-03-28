@@ -1,12 +1,13 @@
-﻿using MentorLink.Data.IRepository;
+﻿using MentorLink.Data.IRepositories;
 using MentorLink.Data.Models;
+using MentorLink.Business.Database;
 using Microsoft.EntityFrameworkCore;
 
-namespace MentorLink.Data.Repositories;
+namespace MentorLink.Business.Repositories;
 
-public class LecturerWorkSpaceRepository(ApplicationDbContext context) : ILecturerWorkSpaceRepository
+public class LecturerWorkSpaceRepository(MentorLinkDbContext context) : ILecturerWorkSpaceRepository
 {
-    private readonly ApplicationDbContext _context = context;
+    private readonly MentorLinkDbContext _context = context;
 
     public async Task<LecturerWorkspace> GetLecturerWorkspaceById(int lectureId, int capstoneWorkspaceId)
     {

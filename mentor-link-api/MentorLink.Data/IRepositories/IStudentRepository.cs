@@ -1,6 +1,6 @@
 ﻿using MentorLink.Data.Models;
 
-namespace MentorLink.Data.IRepository;
+namespace MentorLink.Data.IRepositories;
 
 public interface IStudentRepository
 {

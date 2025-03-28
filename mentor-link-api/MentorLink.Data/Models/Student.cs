@@ -1,5 +1,7 @@
-﻿namespace MentorLink.Data.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
+namespace MentorLink.Data.Models;
+[Table("Student")]
 public class Student
 {
     public int StudentId { get; set; }
@@ -10,5 +12,7 @@ public class Student
     public bool IsGraduated { get; set; }
     public string? StudentCard { get; set; }
     public int CapstoneWorkspaceId { get; set; }
+    public int UserId { get; set; }
+    public User? User { get; set; } = null!;
     public CapstoneWorkspace CapstoneWorkspace { get; set; } = null!;
 }

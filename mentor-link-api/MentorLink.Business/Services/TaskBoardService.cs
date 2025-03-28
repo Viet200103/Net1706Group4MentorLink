@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MentorLink.Business.DTOs;
 using MentorLink.Business.IServices;
-using MentorLink.Data.IRepository;
+using MentorLink.Data.IRepositories;
 using MentorLink.Data.Models;
 
 namespace MentorLink.Business.Services;
@@ -60,7 +60,7 @@ public class TaskBoardService(
         if(student is null) throw new NullReferenceException();
         var existingTaskBoard = await _repository.GetByIdAsync(taskBoardId);
         if(existingTaskBoard == null) throw new KeyNotFoundException("TaskBoard not found");
-        existingTaskBoard.Status = false;
+        existingTaskBoard.Status = 0;
         await _repository.DeleteTaskBoardAsync(existingTaskBoard);
     }
 }
