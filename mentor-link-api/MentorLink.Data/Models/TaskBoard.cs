@@ -1,12 +1,19 @@
-﻿namespace MentorLink.Data.Models;
+namespace MentorLink.Data.Models;
 
-public class TaskBoard
+[Table("TaskBoard")]
+public partial class TaskBoard
 {
-    public int TaskBoardId { get; set; }
-    public string Title { get; set; } = string.Empty;
-    public string? Description { get; set; }
-    public bool? Status { get; set; }
+    [Key] public int TaskBoardId { get; set; }
 
-    public int CapstoneWorkspaceId { get; set; }
-    public CapstoneWorkspace CapstoneWorkspace { get; set; } = null!;
+    [Required] [MaxLength(255)] public string Title { get; set; }
+
+    [Column(TypeName = "TEXT")] public string Description { get; set; }
+
+    [Required] public int Status { get; set; } = 0;
+
+    [ForeignKey("CapstoneWorkspace")][Required] public int CapstoneWorkspaceId { get; set; }
+    
+    public virtual CapstoneWorkspace CapstoneWorkspace { get; set; }
+    
+    public virtual ICollection<TaskList>  TaskLists { get; set; }
 }

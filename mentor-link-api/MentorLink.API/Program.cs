@@ -1,26 +1,23 @@
-using System.Text.Json.Serialization;
-using MentorLink.Business.IServices;
-using MentorLink.Business.Mappers;
+using MentorLink.API.Config;
+using MentorLink.Business.Database;
+using MentorLink.Business.Mapper;
+using MentorLink.Business.Repositories;
 using MentorLink.Business.Services;
-using MentorLink.Data.IRepository;
-using MentorLink.Data.Models;
-using MentorLink.Data.Repositories;
-using Microsoft.EntityFrameworkCore;
+using MentorLink.Business.Services.IServices;
+using MentorLink.Data.IRepositories;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
+DatabaseConfigure.Configure(builder.Configuration, builder);
+SecurityConfigure.ConfigureAuthJwt(builder.Configuration, builder.Services);
 
 builder.Services.AddControllers();
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-});
-// builder.Services.AddControllers().AddJsonOptions(options =>
-// {
-//     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
-// });
+builder.Services.AddAutoMapper(typeof(CommonMapperProfile));
+
+DependencyConfigure.ConfigForServices(builder.Services);
+DependencyConfigure.ConfigForRepositories(builder.Services);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -36,14 +33,17 @@ builder.Services.AddScoped<ITaskBoardService, TaskBoardService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-// if (app.Environment.IsDevelopment())
-// {
+if (app.Environment.IsDevelopment())
+{
     app.UseSwagger();
     app.UseSwaggerUI();
-// }
+}
+
+app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
