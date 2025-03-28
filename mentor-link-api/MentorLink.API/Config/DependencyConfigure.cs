@@ -2,6 +2,7 @@
 using MentorLink.Business.Repositories;
 using MentorLink.Business.Security;
 using MentorLink.Business.Services;
+using MentorLink.Business.Services.IService;
 using MentorLink.Business.Services.IServices;
 using MentorLink.Data.IRepositories;
 
@@ -16,6 +17,7 @@ public static class DependencyConfigure
         services.AddScoped<INewsCategoryService, NewsCategoryService>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<ITaskBoardService, TaskBoardService>();
+        services.AddScoped<ICapstoneTopicService, CapstoneTopicService>();
 
 
         services.AddScoped<ITokenProvider, TokenProvider>();
@@ -29,6 +31,7 @@ public static class DependencyConfigure
         services.AddScoped<ITaskBoardRepository, TaskBoardRepository>();
         services.AddScoped<ILecturerWorkSpaceRepository, LecturerWorkSpaceRepository>();
         services.AddScoped<IStudentRepository, StudentRepository>();
+        services.AddScoped<ICapstoneTopicRepository, CapstoneTopicRepository>();
     }
     
     

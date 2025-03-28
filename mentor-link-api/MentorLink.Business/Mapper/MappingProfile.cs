@@ -12,5 +12,6 @@ public class MappingProfile : Profile
         CreateMap<CreateTaskBoardDTO, TaskBoard>()
             .ForMember(dest => dest.Status, opt => opt.MapFrom(src => 1));
         CreateMap<TaskBoard, UpdateTaskBoardDTO>();
+        CreateMap<CapstoneTopic, CapstoneTopicDTO>().ReverseMap();
     }
 }

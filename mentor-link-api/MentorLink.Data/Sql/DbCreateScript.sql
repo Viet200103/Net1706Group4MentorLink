@@ -67,3 +67,74 @@ CREATE TABLE TaskList
 );
 
 CREATE INDEX IX_TaskList_TaskBoardId ON TaskList (TaskBoardId);
+CREATE TABLE `Lecturer` (
+    `LecturerId` INT NOT NULL AUTO_INCREMENT,
+    `Major` VARCHAR(255) NOT NULL DEFAULT '',
+    `University` VARCHAR(255) NOT NULL DEFAULT '',
+    `Campus` VARCHAR(255) NOT NULL DEFAULT '',
+    `Experience` TEXT NULL,
+    `Description` TEXT NULL,
+    `UserId` INT NOT NULL,
+    PRIMARY KEY (`LecturerId`),
+    CONSTRAINT `FK_Lecturer_User`
+        FOREIGN KEY (`UserId`)
+        REFERENCES `User` (`UserId`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+CREATE TABLE `CapstoneTopic` (
+    `CapstoneTopicId` INT NOT NULL AUTO_INCREMENT,
+    `Title` VARCHAR(200) NOT NULL,
+    `Status` INT NOT NULL DEFAULT 0,
+    `SendTime` DATETIME NOT NULL,
+    `ResponseTime` DATETIME NULL,
+    `ResponseBy` VARCHAR(100) NULL,
+    `ResponseMessage` TEXT NULL,
+    `Content` TEXT NOT NULL,
+    `CapstoneWorkspaceId` INT NOT NULL,
+    PRIMARY KEY (`CapstoneTopicId`),
+    CONSTRAINT `FK_CapstoneTopic_CapstoneWorkspace`
+        FOREIGN KEY (`CapstoneWorkspaceId`)
+        REFERENCES `CapstoneWorkspace` (`CapstoneWorkspaceId`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE `LecturerWorkspace` (
+    `WorkspaceId` INT NOT NULL,
+    `LecturerId` INT NOT NULL,
+    PRIMARY KEY (`WorkspaceId`, `LecturerId`),
+    CONSTRAINT `FK_LecturerWorkspace_CapstoneWorkspace`
+        FOREIGN KEY (`WorkspaceId`)
+        REFERENCES `CapstoneWorkspace` (`CapstoneWorkspaceId`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT `FK_LecturerWorkspace_Lecturer`
+        FOREIGN KEY (`LecturerId`)
+        REFERENCES `Lecturer` (`LecturerId`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+CREATE TABLE `Student` (
+    `StudentId` INT NOT NULL AUTO_INCREMENT,
+    `Major` VARCHAR(255) NOT NULL DEFAULT '',
+    `University` VARCHAR(255) NOT NULL DEFAULT '',
+    `Campus` VARCHAR(255) NOT NULL DEFAULT '',
+    `SchoolYear` INT NOT NULL,
+    `IsGraduated` BOOLEAN NOT NULL DEFAULT FALSE,
+    `StudentCard` VARCHAR(255) NULL,
+    `CapstoneWorkspaceId` INT NOT NULL,
+    `UserId` INT NOT NULL,
+    PRIMARY KEY (`StudentId`),
+    CONSTRAINT `FK_Student_CapstoneWorkspace`
+        FOREIGN KEY (`CapstoneWorkspaceId`)
+        REFERENCES `CapstoneWorkspace` (`CapstoneWorkspaceId`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT `FK_Student_User`
+        FOREIGN KEY (`UserId`)
+        REFERENCES `User` (`UserId`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+

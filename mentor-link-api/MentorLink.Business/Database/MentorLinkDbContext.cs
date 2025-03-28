@@ -14,6 +14,7 @@ public class MentorLinkDbContext(DbContextOptions<MentorLinkDbContext> options) 
     public DbSet<Lecturer> Lecturers { get; set; }
     public DbSet<Student> Students { get; set; }
     public DbSet<LecturerWorkspace> LecturerWorkspaces { get; set; }
+    public DbSet<CapstoneTopic> CapstoneTopics { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

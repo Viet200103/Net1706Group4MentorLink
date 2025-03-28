@@ -12,7 +12,7 @@ public class Student
     public bool IsGraduated { get; set; }
     public string? StudentCard { get; set; }
     public int CapstoneWorkspaceId { get; set; }
-    public int UserId { get; set; }
+    public string UserId { get; set; }
     public User? User { get; set; } = null!;
     public CapstoneWorkspace CapstoneWorkspace { get; set; } = null!;
 }

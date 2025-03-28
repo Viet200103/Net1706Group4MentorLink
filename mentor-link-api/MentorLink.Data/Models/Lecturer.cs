@@ -10,7 +10,7 @@ public class Lecturer
     public string Campus { get; set; } = string.Empty;
     public string? Experience { get; set; }
     public string? Description { get; set; }
-    public int UserId { get; set; }
+    public string UserId { get; set; }
     public User? User { get; set; } = null!;
     public List<LecturerWorkspace> LecturerWorkspaces { get; set; } = new();
 }
