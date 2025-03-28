@@ -1,4 +1,5 @@
-﻿using MentorLink.Data.IRepositories;
+﻿using MentorLink.Business.Database;
+using MentorLink.Data.IRepositories;
 using MentorLink.Data.Models;
 using Microsoft.EntityFrameworkCore;
 

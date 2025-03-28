@@ -17,9 +17,9 @@ public class NewsCategoryService :  INewsCategoryService
         _mapper = mapper;
     }
     
-    public async Task<IEnumerable<NewsCategoryDto>> GetAllNewsCategoryAsync()
+    public async Task<IEnumerable<NewsCategoryDTO>> GetAllNewsCategoryAsync()
     {
         IEnumerable<NewsCategory> categoryList = await _repository.GetAllNewsCategoryAsync();
-        return _mapper.Map<IEnumerable<NewsCategoryDto>>(categoryList);
+        return _mapper.Map<IEnumerable<NewsCategoryDTO>>(categoryList);
     }
 }

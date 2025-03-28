@@ -1,14 +1,18 @@
-DROP DATABASE IF EXISTS MentorLink;
+DROP
+DATABASE IF EXISTS MentorLink;
 
-CREATE DATABASE MentorLink;
-USE MentorLink;
+CREATE
+DATABASE MentorLink;
+USE
+MentorLink;
 
-CREATE TABLE User(
-                     UserId VARCHAR(32) PRIMARY KEY,
-                     Email VARCHAR(255),
-                     Password VARCHAR(128),
-                     CreateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                     UpdateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE User
+(
+    UserId   VARCHAR(32) PRIMARY KEY,
+    Email    VARCHAR(255),
+    Password VARCHAR(128),
+    CreateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UpdateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE CapstoneWorkspace

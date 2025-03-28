@@ -21,7 +21,7 @@ public class NewsService : INewsService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<NewsDto>> GetAllNewsAsync()
+    public async Task<IEnumerable<NewsDTO>> GetAllNewsAsync()
     {
         IEnumerable<News> newsList = await _repository.GetAllNewsAsync();
         
@@ -30,10 +30,10 @@ public class NewsService : INewsService
             news.Content = DeserializeContent(news.Content);
         }
 
-        return _mapper.Map<IEnumerable<NewsDto>>(newsList);
+        return _mapper.Map<IEnumerable<NewsDTO>>(newsList);
     }
 
-    public async Task<NewsDto> GetNewsById(int id)
+    public async Task<NewsDTO> GetNewsById(int id)
     {
         News news = await _repository.GetNewsById(id);
         
@@ -44,10 +44,10 @@ public class NewsService : INewsService
 
         news.Content = DeserializeContent(news.Content);
         
-        return _mapper.Map<NewsDto>(news);
+        return _mapper.Map<NewsDTO>(news);
     }
 
-    public async Task<NewsDto> CreateNewsAsync(CreateNewsDto newsDto)
+    public async Task<NewsDTO> CreateNewsAsync(CreateNewsDTO newsDto)
     {
         News news = new News();
 
@@ -65,7 +65,7 @@ public class NewsService : INewsService
 
         News result = await _repository.CreateNewsAsync(news);
 
-        return _mapper.Map<NewsDto>(result);
+        return _mapper.Map<NewsDTO>(result);
     }
 
     public async Task<bool> DeleteNewsAsync(int id)

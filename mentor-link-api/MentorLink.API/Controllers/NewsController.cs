@@ -11,20 +11,20 @@ namespace MentorLink.API.Controllers;
 public class NewsController : ControllerBase
 {
     private INewsService _service;
-    private ResponseDto _response;
+    private ResponseDTO _response;
 
     public NewsController(INewsService service)
     {
         _service = service;
-        _response = new ResponseDto();
+        _response = new ResponseDTO();
     }
 
     [HttpGet]
-    public async Task<ResponseDto> GetAsync()
+    public async Task<ResponseDTO> GetAsync()
     {
         try
         {
-            IEnumerable<NewsDto> newsList = await _service.GetAllNewsAsync();
+            IEnumerable<NewsDTO> newsList = await _service.GetAllNewsAsync();
             _response.Result = newsList;
         }
         catch (Exception ex)
@@ -38,11 +38,11 @@ public class NewsController : ControllerBase
     
     [HttpGet]
     [Route("{id:int}")]
-    public async Task<ResponseDto> GetAsync(int id)
+    public async Task<ResponseDTO> GetAsync(int id)
     {
         try
         {
-            NewsDto newsDto = await _service.GetNewsById(id);
+            NewsDTO newsDto = await _service.GetNewsById(id);
             _response.Result = newsDto;
         }
         catch (Exception ex)
@@ -54,11 +54,11 @@ public class NewsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ResponseDto> PostAsync([FromBody] CreateNewsDto newsDto)
+    public async Task<ResponseDTO> PostAsync([FromBody] CreateNewsDTO newsDto)
     {
         try
         {
-            NewsDto result = await _service.CreateNewsAsync(newsDto);
+            NewsDTO result = await _service.CreateNewsAsync(newsDto);
             _response.Result = result;
         }
         catch (Exception ex)
@@ -72,7 +72,7 @@ public class NewsController : ControllerBase
     
     [HttpDelete]
     [Route("{id:int}")]
-    public async Task<ResponseDto> DeleteAsync(int id)
+    public async Task<ResponseDTO> DeleteAsync(int id)
     {
         try
         {

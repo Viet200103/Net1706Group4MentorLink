@@ -2,7 +2,7 @@
 
 namespace MentorLink.Business.Dtos;
 
-public class NewsCategoryDto
+public class NewsCategoryDTO
 {
     public int CategoryId { get; set; }
     public string Name { get; set; }

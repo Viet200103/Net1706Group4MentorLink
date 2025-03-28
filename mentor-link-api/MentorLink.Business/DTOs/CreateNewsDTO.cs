@@ -1,6 +1,6 @@
 ﻿namespace MentorLink.Business.Dtos;
 
-public class CreateNewsDto
+public class CreateNewsDTO
 {
     public string Title { get; set; }
     public string Content { get; set; }

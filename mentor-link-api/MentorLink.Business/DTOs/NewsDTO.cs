@@ -2,7 +2,7 @@
 
 namespace MentorLink.Data.Models.Dtos;
 
-public class NewsDto
+public class NewsDTO
 {
     public int NewsId { get; set; }
     public string Title { get; set; }
@@ -11,5 +11,5 @@ public class NewsDto
     public DateTime PublicDate { get; set; }
     public int CategoryId { get; set; }
     public int Status { get; set; } = 0;
-    public NewsCategoryDto NewsCategory { get; set; }
+    public NewsCategoryDTO NewsCategory { get; set; }
 }

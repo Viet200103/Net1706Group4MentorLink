@@ -10,20 +10,20 @@ namespace MentorLink.API.Controllers;
 public class NewsCategoryController : ControllerBase
 {
     private readonly INewsCategoryService _service;
-    private readonly ResponseDto _response;
+    private readonly ResponseDTO _response;
 
     public NewsCategoryController(INewsCategoryService service)
     {
         _service = service;
-        _response = new ResponseDto();
+        _response = new ResponseDTO();
     }
 
     [HttpGet]
-    public async Task<ResponseDto> GetAsync()
+    public async Task<ResponseDTO> GetAsync()
     {
         try
         {
-            IEnumerable<NewsCategoryDto> categoryList = await _service.GetAllNewsCategoryAsync();
+            IEnumerable<NewsCategoryDTO> categoryList = await _service.GetAllNewsCategoryAsync();
             _response.Result = categoryList;
         }
         catch (Exception ex)

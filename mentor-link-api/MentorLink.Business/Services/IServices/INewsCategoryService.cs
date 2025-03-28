@@ -4,5 +4,5 @@ namespace MentorLink.Business.Services.IServices;
 
 public interface INewsCategoryService
 {
-    Task<IEnumerable<NewsCategoryDto>> GetAllNewsCategoryAsync();
+    Task<IEnumerable<NewsCategoryDTO>> GetAllNewsCategoryAsync();
 }

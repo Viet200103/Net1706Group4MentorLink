@@ -1,4 +1,12 @@
-USE MentorLink;
+USE
+MentorLink;
+
+INSERT INTO User (UserId, Email, Password, CreateAt, UpdateAt)
+VALUES (UUID(), 'user1@example.com', 'hashed_password_1', NOW(), NOW()),
+       (UUID(), 'user2@example.com', 'hashed_password_2', NOW(), NOW()),
+       (UUID(), 'user3@example.com', 'hashed_password_3', NOW(), NOW()),
+       (UUID(), 'user4@example.com', 'hashed_password_4', NOW(), NOW()),
+       (UUID(), 'user5@example.com', 'hashed_password_5', NOW(), NOW());
 
 INSERT INTO NewsCategory (Name)
 VALUES ('Technology'),
